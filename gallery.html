@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Gallery | Fitness Club</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="gallery-nav">
+        <a href="dashboard.html" class="gallery-logo">FITNESS<span> CLUB</span></a>
+
+        <div class="gallery-nav-links">
+            <!-- <a href="dashboard.html">Dashboard</a>
+            <a href="membership.html">Membership</a>
+            <a href="trainers.html">Trainers</a>
+            <a href="gallery.html" class="active">Gallery</a>
+            <a href="workout.html">Workout</a>
+            <a href="contact.html">Contact</a> -->
+             <button onclick="dashboard()">Dashboard</button>
+             
+            <button onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <p class="gallery-tag">OUR FITNESS WORLD</p>
+            <h1>OUR <span>GALLERY</span></h1>
+            <p>
+                Explore our gym, workouts, trainers and fitness environment.
+                Get inspired and start your fitness journey today.
+            </p>
+            <a href="#photo-gallery" class="gallery-btn">EXPLORE GALLERY</a>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-section" id="photo-gallery">
+
+        <div class="gallery-heading">
+            <p class="gallery-tag">CAPTURED MOMENTS</p>
+            <h2>GYM <span>PHOTOS</span></h2>
+            <p>Explore our fitness club through these pictures.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="gym">Gym</button>
+            <button class="filter-btn" data-filter="workout">Workout</button>
+            <button class="filter-btn" data-filter="equipment">Equipment</button>
+            <button class="filter-btn" data-filter="trainers">Trainers</button>
+        </div>
+
+        <!-- Images -->
+        <div class="gallery-grid">
+
+            <div class="gallery-item" data-category="gym">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800" alt="Modern gym interior">
+                <div class="gallery-overlay"><h3>Modern Gym</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="workout">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800" alt="Fitness workout">
+                <div class="gallery-overlay"><h3>Hard Workout</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="equipment">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800" alt="Gym equipment">
+                <div class="gallery-overlay"><h3>Gym Equipment</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="trainers">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=800" alt="Personal training">
+                <div class="gallery-overlay"><h3>Personal Training</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="workout">
+                <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=800" alt="Strength training">
+                <div class="gallery-overlay"><h3>Strength Training</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="equipment">
+                <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800" alt="Fitness machines">
+                <div class="gallery-overlay"><h3>Fitness Machines</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="gym">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800" alt="Gym training area">
+                <div class="gallery-overlay"><h3>Training Area</h3></div>
+            </div>
+
+            <div class="gallery-item" data-category="trainers">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800" alt="Fitness coaching">
+                <div class="gallery-overlay"><h3>Expert Coaching</h3></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- YouTube Videos -->
+    <section class="gallery-video-section">
+
+        <div class="gallery-heading">
+            <p class="gallery-tag">WATCH & LEARN</p>
+            <h2>FITNESS <span>VIDEOS</span></h2>
+            <p>Learn exercises and improve your fitness knowledge.</p>
+        </div>
+
+        <div class="gallery-video-grid">
+
+            <div class="gallery-video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/aclHkVaku9U"
+                    title="Squat workout video"
+                    allowfullscreen>
+                </iframe>
+                <h3>Squat Workout</h3>
+                <p>Learn the basics of proper squats.</p>
+            </div>
+
+            <div class="gallery-video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/IODxDxX7oi4"
+                    title="Push up workout video"
+                    allowfullscreen>
+                </iframe>
+                <h3>Push Up Training</h3>
+                <p>Improve your upper body strength.</p>
+            </div>
+
+            <div class="gallery-video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/UBMk30rjy0o"
+                    title="Full body workout video"
+                    allowfullscreen>
+                </iframe>
+                <h3>Full Body Workout</h3>
+                <p>Try a complete body workout routine.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="gallery-cta">
+        <p class="gallery-tag">YOUR FITNESS JOURNEY STARTS HERE</p>
+        <h2>READY TO <span>GET STRONGER?</span></h2>
+        <p>Join our fitness club and take the next step towards your goals.</p>
+        <a href="membership.html" class="gallery-btn">JOIN OUR CLUB</a>
+    </section>
+
+    <!-- Image Lightbox -->
+    <div class="gallery-lightbox" id="galleryLightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <img src="" alt="Selected gallery photo" id="lightboxImage">
+    </div>
+
+    <footer class="gallery-footer">
+        <p>© 2026 Fitness Club. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Registration check
+        if (localStorage.getItem("fitnessLoggedIn") !== "true") {
+            window.location.href = "index.html";
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem("fitnessLoggedIn");
+            localStorage.removeItem("fitnessMember");
+            window.location.href = "index.html";
+        }
+        // Dashboard button
+function dashboard() {
+    window.location.href = "dashboard.html";
+}
+
+        // Gallery filters
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+
+                const filter = button.dataset.filter;
+
+                galleryItems.forEach(item => {
+                    if (filter === "all" || item.dataset.category === filter) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        // Image lightbox
+        const lightbox = document.getElementById("galleryLightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+
+        galleryItems.forEach(item => {
+            item.querySelector("img").addEventListener("click", () => {
+                lightboxImage.src = item.querySelector("img").src;
+                lightbox.classList.add("show");
+            });
+        });
+
+        document.getElementById("lightboxClose").addEventListener("click", () => {
+            lightbox.classList.remove("show");
+        });
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) {
+                lightbox.classList.remove("show");
+            }
+        });
+    </script>
+
+</body>
+</html>

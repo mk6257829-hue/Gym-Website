@@ -1,0 +1,233 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join Fitness Club</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="registration-page">
+
+    <!-- HEADER -->
+    <header class="register-header">
+
+        <a href="index.html" class="register-logo">
+            FITNESS<span>CLUB.</span>
+        </a>
+
+        <a href="index.html" class="back-home">
+            ← BACK TO HOME
+        </a>
+
+    </header>
+
+
+    <!-- REGISTRATION SECTION -->
+    <main class="registration-layout">
+
+        <!-- LEFT SIDE IMAGE -->
+        <section class="registration-visual">
+
+            <div class="image-glow"></div>
+
+            <img src="fitness-3d.png"
+                 alt="3D Fitness Athlete"
+                 class="athlete-image">
+
+            <div class="visual-caption">
+
+                <h2>
+                    STRONGER THAN<br>
+                    <span>YESTERDAY.</span>
+                </h2>
+
+                <p>Stronger. Healthier. Happier.</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE FORM -->
+        <section class="registration-wrapper">
+
+            <div class="form-heading">
+
+                <p class="form-tag">BECOME A MEMBER</p>
+
+                <h1>JOIN THE <span>CLUB.</span></h1>
+
+                <p>Start your transformation today.</p>
+
+            </div>
+
+
+            <!-- REGISTRATION FORM -->
+            <form id="registrationForm">
+
+                <div class="form-group">
+
+                    <label for="memberName">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="memberName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="memberPhone">Mobile Number</label>
+
+                    <input
+                        type="tel"
+                        id="memberPhone"
+                        name="mobile"
+                        placeholder="10 digit mobile number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="memberEmail">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="memberEmail"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="memberPlan">Select Membership</label>
+
+                    <select id="memberPlan" name="plan" required>
+
+                        <option value="">Choose your plan</option>
+
+                        <option value="Basic">Basic</option>
+
+                        <option value="Standard">Standard</option>
+
+                        <option value="Premium">Premium</option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="register-submit">
+
+                    SUBMIT REGISTRATION <span>↗</span>
+
+                </button>
+
+            </form>
+
+
+            <!-- BENEFITS -->
+            <div class="form-benefits">
+
+                <div>
+                    <span>🏋️</span>
+                    <p>Expert<br>Training</p>
+                </div>
+
+                <div>
+                    <span>🛡️</span>
+                    <p>Flexible<br>Plans</p>
+                </div>
+
+                <div>
+                    <span>🏆</span>
+                    <p>Premium<br>Facilities</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- REGISTRATION JAVASCRIPT -->
+    <script>
+
+        const registrationForm =
+            document.getElementById("registrationForm");
+
+        registrationForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            if (!registrationForm.checkValidity()) {
+
+                registrationForm.reportValidity();
+
+                return;
+
+            }
+
+            const member = {
+
+                name: document.getElementById("memberName").value.trim(),
+
+                mobile: document.getElementById("memberPhone").value.trim(),
+
+                email: document.getElementById("memberEmail").value.trim(),
+
+                plan: document.getElementById("memberPlan").value
+
+            };
+
+
+            // SAVE MEMBER DETAILS
+            localStorage.setItem(
+                "fitnessMember",
+                JSON.stringify(member)
+            );
+
+
+            // SET LOGIN STATUS
+            localStorage.setItem(
+                "fitnessLoggedIn",
+                "true"
+            );
+
+
+            // SUCCESS MESSAGE
+            alert("Registration Successful! Welcome to Fitness Club.");
+
+
+            // OPEN DASHBOARD
+            window.location.href = "dashboard.html";
+
+        });
+
+    </script>
+
+</body>
+</html>
+```

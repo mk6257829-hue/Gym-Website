@@ -1,0 +1,193 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fitness Club | Member Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="dash-nav">
+
+    <a href="dashboard.html" class="logo">
+        FITNESS <span>CLUB.</span>
+    </a>
+
+    <button class="logout-btn" onclick="logout()">
+        LOGOUT ↗
+    </button>
+
+</header>
+
+
+<main class="dashboard-main">
+
+    <section class="dash-hero">
+
+        <div class="hero-content">
+
+            <p class="hero-label">YOUR FITNESS JOURNEY STARTS HERE</p>
+
+            <h1>
+                BUILD YOUR<br>
+                <span>STRONGER</span> SELF.
+            </h1>
+
+            <p class="hero-description">
+                Welcome, <strong id="memberName">Member</strong>!
+                Train harder. Stay stronger. Become the best version
+                of yourself with Fitness Club.
+            </p>
+
+            <p class="hero-description">
+                YOUR PLAN:
+                <strong id="memberPlan">MEMBERSHIP</strong>
+            </p>
+
+            <a href="membership.html" class="hero-btn">
+                EXPLORE MEMBERSHIP ↗
+            </a>
+
+        </div>
+
+
+        <div class="hero-athlete">
+
+            <img
+                src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&auto=format&fit=crop&q=85"
+                alt="Fitness Athlete"
+            >
+
+            <div class="athlete-glow"></div>
+
+        </div>
+
+        <div class="hero-number">01 / FITNESS</div>
+
+    </section>
+
+
+    <section class="dashboard-services">
+
+        <div class="section-title">
+
+            <p>EXPLORE YOUR FITNESS WORLD</p>
+
+            <h2>YOUR <span>DASHBOARD</span></h2>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <a href="membership.html" class="service-card">
+                <span class="card-number">01</span>
+                <div class="service-icon">✦</div>
+                <h3>MEMBERSHIP</h3>
+                <p>Explore plans and benefits.</p>
+                <span class="card-link">EXPLORE ↗</span>
+            </a>
+
+
+            <a href="trainers.html" class="service-card">
+                <span class="card-number">02</span>
+                <div class="service-icon">🏋</div>
+                <h3>OUR TRAINERS</h3>
+                <p>Meet your fitness experts.</p>
+                <span class="card-link">EXPLORE ↗</span>
+            </a>
+
+
+            <a href="gallery.html" class="service-card">
+                <span class="card-number">03</span>
+                <div class="service-icon">▣</div>
+                <h3>GYM GALLERY</h3>
+                <p>Explore our fitness space.</p>
+                <span class="card-link">EXPLORE ↗</span>
+            </a>
+
+
+            <a href="workout.html" class="service-card">
+                <span class="card-number">04</span>
+                <div class="service-icon">⚡</div>
+                <h3>WORKOUT</h3>
+                <p>Discover workout routines.</p>
+                <span class="card-link">EXPLORE ↗</span>
+            </a>
+
+
+            <a href="contact.html" class="service-card">
+                <span class="card-number">05</span>
+                <div class="service-icon">✉</div>
+                <h3>CONTACT</h3>
+                <p>Connect with our team.</p>
+                <span class="card-link">EXPLORE ↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="dash-footer">
+
+    © 2026 FITNESS CLUB. ALL RIGHTS RESERVED.
+
+</footer>
+
+
+<script>
+
+    // CHECK LOGIN ACCESS
+    const isLoggedIn =
+        localStorage.getItem("fitnessLoggedIn");
+
+    const memberData =
+        localStorage.getItem("fitnessMember");
+
+
+    if (isLoggedIn !== "true" || !memberData) {
+
+        window.location.replace("index.html");
+
+    } else {
+
+        const member = JSON.parse(memberData);
+
+        document.getElementById("memberName").textContent =
+            member.name;
+
+        document.getElementById("memberPlan").textContent =
+            member.plan;
+
+    }
+
+
+    // LOGOUT FUNCTION
+    function logout() {
+
+        localStorage.removeItem("fitnessLoggedIn");
+
+        localStorage.removeItem("fitnessMember");
+
+        window.location.href = "index.html";
+
+    }
+
+</script>
+
+</body>
+</html>
+```

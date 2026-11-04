@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Trainers | Fitness Club</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="trainers-body">
+
+    <!-- Navigation -->
+    <nav class="trainers-nav">
+
+        <div class="trainers-logo">
+            FITNESS<span> CLUB</span>
+        </div>
+
+        <div class="trainers-nav-links">
+            <a href="dashboard.html" class="trainer-dashboard-btn">
+                Dashboard
+            </a>
+
+            <a href="#" class="trainer-logout-btn" onclick="logout()">
+                Logout
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="trainers-hero">
+
+        <div class="trainers-hero-content">
+
+            <p class="trainers-tag">MEET OUR EXPERT TEAM</p>
+
+            <h1>
+                TRAIN WITH
+                <span>THE BEST</span>
+            </h1>
+
+            <p>
+                Great trainers build great athletes. Meet our
+                professional fitness trainers who will guide,
+                motivate and support you on your fitness journey.
+            </p>
+
+            <a href="#our-trainers" class="trainer-explore-btn">
+                MEET OUR TRAINERS ↓
+            </a>
+
+        </div>
+
+        <div class="trainers-hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
+                alt="Professional gym training area">
+        </div>
+
+    </section>
+
+    <!-- Trainers Section -->
+    <section class="our-trainers-section" id="our-trainers">
+
+        <p class="trainers-tag">OUR PROFESSIONAL TEAM</p>
+
+        <h2>MEET OUR TRAINERS</h2>
+
+        <p class="trainers-description">
+            Learn from experienced fitness professionals.
+        </p>
+
+        <div class="trainers-grid">
+
+            <!-- Trainer 1 -->
+            <div class="trainer-card">
+
+                <div class="trainer-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=700&q=85"
+                        alt="Strength trainer">
+                </div>
+
+                <div class="trainer-info">
+                    <span class="trainer-speciality">STRENGTH TRAINING</span>
+
+                    <h3>Rahul Sharma</h3>
+
+                    <p>
+                        Expert in strength training and muscle building.
+                    </p>
+
+                    <div class="trainer-experience">
+                        7+ YEARS EXPERIENCE
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trainer 2 -->
+            <div class="trainer-card">
+
+                <div class="trainer-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=700&q=85"
+                        alt="Fitness trainer">
+                </div>
+
+                <div class="trainer-info">
+                    <span class="trainer-speciality">PERSONAL FITNESS</span>
+
+                    <h3>Priya Verma</h3>
+
+                    <p>
+                        Helps members improve fitness and achieve goals.
+                    </p>
+
+                    <div class="trainer-experience">
+                        5+ YEARS EXPERIENCE
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trainer 3 -->
+            <div class="trainer-card">
+
+                <div class="trainer-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=85"
+                        alt="Bodybuilding trainer">
+                </div>
+
+                <div class="trainer-info">
+                    <span class="trainer-speciality">BODYBUILDING</span>
+
+                    <h3>Arjun Singh</h3>
+
+                    <p>
+                        Specializes in bodybuilding and muscle development.
+                    </p>
+
+                    <div class="trainer-experience">
+                        8+ YEARS EXPERIENCE
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trainer 4 -->
+            <div class="trainer-card">
+
+                <div class="trainer-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=85"
+                        alt="Cardio trainer">
+                </div>
+
+                <div class="trainer-info">
+                    <span class="trainer-speciality">CARDIO & FITNESS</span>
+
+                    <h3>Neha Kapoor</h3>
+
+                    <p>
+                        Focuses on cardio, endurance and overall fitness.
+                    </p>
+
+                    <div class="trainer-experience">
+                        6+ YEARS EXPERIENCE
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Bottom Section -->
+    <section class="trainer-bottom">
+
+        <h2>READY TO TRANSFORM YOURSELF?</h2>
+
+        <p>
+            Start training with our expert team and take
+            your fitness to the next level.
+        </p>
+
+        <a href="membership.html">
+            EXPLORE MEMBERSHIP
+        </a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="trainers-footer">
+        © 2026 FITNESS CLUB. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+
+        // Check member login
+        const member = JSON.parse(
+            localStorage.getItem("fitnessMember")
+        );
+
+        if (
+            localStorage.getItem("fitnessLoggedIn") !== "true" ||
+            !member
+        ) {
+            alert("Please register first!");
+            window.location.href = "index.html";
+        }
+
+        // Logout
+        function logout() {
+
+            localStorage.removeItem("fitnessLoggedIn");
+            localStorage.removeItem("fitnessMember");
+
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+</html>

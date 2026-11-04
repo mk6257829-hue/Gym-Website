@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workout Plan | Fitness Club</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="workout-nav">
+
+        <a href="#" class="workout-logo">
+            FIT<span>NESS</span> CLUB
+        </a>
+
+        <div class="workout-nav-buttons">
+            <a href="#weekly-plan" class="weekly-btn">Weekly Plan</a>
+            <button onclick="goDashboard()">Dashboard</button>
+
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="workout-hero">
+
+        <div class="workout-hero-content">
+
+            <p class="workout-tag">TRAIN HARD • STAY STRONG</p>
+
+            <h1>
+                BUILD YOUR
+                <span>STRENGTH</span>
+            </h1>
+
+            <p>
+                Explore exercises, learn proper workout techniques
+                and follow your weekly fitness routine.
+            </p>
+
+            <a href="#workout-categories" class="workout-btn">
+                EXPLORE WORKOUTS
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- WORKOUT CATEGORIES -->
+    <section class="workout-categories" id="workout-categories">
+
+        <div class="workout-heading">
+            <p class="workout-tag">TRAIN EVERY MUSCLE</p>
+            <h2>WORKOUT <span>CATEGORIES</span></h2>
+            <p>Choose your workout category and start training.</p>
+        </div>
+
+        <div class="workout-category-grid">
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700" alt="Chest workout">
+                <h3>CHEST</h3>
+            </a>
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700" alt="Back workout">
+                <h3>BACK</h3>
+            </a>
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700" alt="Leg workout">
+                <h3>LEGS</h3>
+            </a>
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=700" alt="Shoulder workout">
+                <h3>SHOULDERS</h3>
+            </a>
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700" alt="Arm workout">
+                <h3>ARMS</h3>
+            </a>
+
+            <a href="#exercise-library" class="workout-category-card">
+                <img src="https://images.unsplash.com/photo-1517838277536-fc8e3e6f1a2e?w=700" alt="Abs workout">
+                <h3>ABS</h3>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXERCISE LIBRARY -->
+    <section class="workout-exercises" id="exercise-library">
+
+        <div class="workout-heading">
+            <p class="workout-tag">EXERCISE LIBRARY</p>
+            <h2>POPULAR <span>EXERCISES</span></h2>
+            <p>Learn basic exercises and follow proper form.</p>
+        </div>
+
+        <div class="exercise-grid">
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=700" alt="Push ups">
+                <div class="exercise-info">
+                    <span>CHEST</span>
+                    <h3>Push Ups</h3>
+                    <p>Keep your body straight and lower your chest with control.</p>
+                    <p class="exercise-reps">3 Sets × 8–10 Reps</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?w=700" alt="Dumbbell curls">
+                <div class="exercise-info">
+                    <span>BICEPS</span>
+                    <h3>Bicep Curls</h3>
+                    <p>Keep your elbows close to your body while lifting.</p>
+                    <p class="exercise-reps">3 Sets × 10–12 Reps</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?w=700" alt="Squats">
+                <div class="exercise-info">
+                    <span>LEGS</span>
+                    <h3>Squats</h3>
+                    <p>Keep your chest up and knees aligned with your toes.</p>
+                    <p class="exercise-reps">3 Sets × 10–12 Reps</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=700" alt="Shoulder press">
+                <div class="exercise-info">
+                    <span>SHOULDERS</span>
+                    <h3>Shoulder Press</h3>
+                    <p>Press the weights overhead without arching your back.</p>
+                    <p class="exercise-reps">3 Sets × 8–10 Reps</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07b?w=700" alt="Plank">
+                <div class="exercise-info">
+                    <span>ABS</span>
+                    <h3>Plank</h3>
+                    <p>Keep your body straight and brace your core.</p>
+                    <p class="exercise-reps">3 Sets × 15–30 Seconds</p>
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700" alt="Lat pulldown">
+                <div class="exercise-info">
+                    <span>BACK</span>
+                    <h3>Lat Pulldown</h3>
+                    <p>Pull the bar toward your upper chest with control.</p>
+                    <p class="exercise-reps">3 Sets × 10–12 Reps</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 3D EXERCISE DEMO -->
+    <section class="workout-video-section">
+
+        <div class="workout-heading">
+            <p class="workout-tag">LEARN PROPER FORM</p>
+            <h2>3D EXERCISE <span>DEMO</span></h2>
+            <p>Explore animated exercise demonstrations to understand movement.</p>
+        </div>
+
+        <div class="demo-box">
+            <h3>INTERACTIVE 3D WORKOUT COACH</h3>
+
+            <p>
+                Explore 3D athlete demonstrations for different exercises.
+                Select an exercise and study its movement before training.
+            </p>
+
+            <a href="https://workout.codingmarble.com/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="workout-btn">
+                OPEN 3D EXERCISE DEMO
+            </a>
+        </div>
+
+    </section>
+    ```html
+<!-- WEEKLY WORKOUT PLAN -->
+
+<section class="weekly-plan" id="weekly-plan">
+
+    <div class="workout-heading">
+        <p class="workout-tag">YOUR WEEKLY ROUTINE</p>
+        <h2>MONDAY TO <span>SATURDAY</span></h2>
+        <p>Follow your weekly fitness schedule.</p>
+    </div>
+
+    <div class="weekly-plan-grid">
+
+        <div class="plan-day">
+            <span>MONDAY</span>
+            <h3>Chest + Triceps</h3>
+            <ul>
+                <li>Push Ups – 3 × 10</li>
+                <li>Bench Press – 3 × 10</li>
+                <li>Incline Press – 3 × 10</li>
+                <li>Cable Fly – 3 × 12</li>
+                <li>Triceps Pushdown – 3 × 12</li>
+            </ul>
+        </div>
+
+        <div class="plan-day">
+            <span>TUESDAY</span>
+            <h3>Back + Biceps</h3>
+            <ul>
+                <li>Lat Pulldown – 3 × 12</li>
+                <li>Seated Cable Row – 3 × 10</li>
+                <li>Dumbbell Row – 3 × 10</li>
+                <li>Bicep Curls – 3 × 12</li>
+                <li>Hammer Curls – 3 × 12</li>
+            </ul>
+        </div>
+
+        <div class="plan-day">
+            <span>WEDNESDAY</span>
+            <h3>Legs + Glutes</h3>
+            <ul>
+                <li>Bodyweight Squats – 3 × 12</li>
+                <li>Leg Press – 3 × 10</li>
+                <li>Walking Lunges – 3 × 10</li>
+                <li>Leg Curls – 3 × 12</li>
+                <li>Calf Raises – 3 × 15</li>
+            </ul>
+        </div>
+
+        <div class="plan-day">
+            <span>THURSDAY</span>
+            <h3>Shoulders + Abs</h3>
+            <ul>
+                <li>Shoulder Press – 3 × 10</li>
+                <li>Lateral Raises – 3 × 12</li>
+                <li>Front Raises – 3 × 12</li>
+                <li>Plank – 3 × 20 Seconds</li>
+                <li>Crunches – 3 × 15</li>
+            </ul>
+        </div>
+
+        <div class="plan-day">
+            <span>FRIDAY</span>
+            <h3>Full Body</h3>
+            <ul>
+                <li>Bodyweight Squats – 3 × 12</li>
+                <li>Push Ups – 3 × 10</li>
+                <li>Lat Pulldown – 3 × 10</li>
+                <li>Dumbbell Rows – 3 × 10</li>
+                <li>Mountain Climbers – 3 × 20</li>
+            </ul>
+        </div>
+
+        <div class="plan-day">
+            <span>SATURDAY</span>
+            <h3>Cardio + Core</h3>
+            <ul>
+                <li>Treadmill Walk – 10 Minutes</li>
+                <li>Cycling – 10 Minutes</li>
+                <li>Plank – 3 × 20 Seconds</li>
+                <li>Leg Raises – 3 × 10</li>
+                <li>Bird Dog – 3 × 10</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="rest-day-box">
+        <h3>SUNDAY – REST DAY</h3>
+        <p>Allow your muscles to recover. Light walking and gentle stretching are optional.</p>
+    </div>
+
+</section>
+
+
+
+    
+
+    <!-- SAFE WEIGHT GUIDE -->
+    <section class="safe-weight-section">
+
+        <div class="workout-heading">
+            <p class="workout-tag">TRAIN SMART</p>
+            <h2>SAFE WEIGHT <span>GUIDE</span></h2>
+            <p>Build strength gradually and focus on proper technique.</p>
+        </div>
+
+        <div class="safe-weight-grid">
+
+            <div class="safe-weight-card">
+                <span>01</span>
+                <h3>Start Light</h3>
+                <p>Beginners should start with bodyweight or the lightest comfortable resistance.</p>
+            </div>
+
+            <div class="safe-weight-card">
+                <span>02</span>
+                <h3>Correct Form</h3>
+                <p>Learn the correct movement before increasing the weight.</p>
+            </div>
+
+            <div class="safe-weight-card">
+                <span>03</span>
+                <h3>Slow Progress</h3>
+                <p>Increase resistance gradually only when you can control every repetition.</p>
+            </div>
+
+            <div class="safe-weight-card">
+                <span>04</span>
+                <h3>Take Rest</h3>
+                <p>Allow muscles to recover between challenging workout sessions.</p>
+            </div>
+
+        </div>
+
+        <div class="workout-warning">
+            <h3>IMPORTANT SAFETY WARNING</h3>
+            <p>
+                Never lift more weight than you can safely control.
+                Incorrect technique and excessive resistance can cause injuries.
+                Stop exercising if you experience sharp pain, dizziness,
+                chest pain or unusual shortness of breath. Ask a qualified
+                trainer for guidance.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="workout-footer">
+        <p>© 2026 Fitness Club. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
