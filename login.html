@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101315">
+    <title>Member Login | Fitness Club</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-body">
+
+    <main class="login-page">
+
+        <div class="login-glow glow-one"></div>
+        <div class="login-glow glow-two"></div>
+        <div class="login-grid"></div>
+
+        <a href="index.html" class="login-logo">
+            FITNESS <span>CLUB.</span>
+        </a>
+
+        <a href="index.html" class="login-back">
+            ← BACK TO HOME
+        </a>
+
+        <div class="login-layout">
+
+            <!-- LEFT SIDE -->
+            <section class="login-visual">
+
+                <div class="visual-tag">
+                    <span class="live-dot"></span>
+                    YOUR FITNESS JOURNEY STARTS HERE
+                </div>
+
+                <h1>
+                    BUILD YOUR<br>
+                    <span>STRONGER</span><br>
+                    SELF.
+                </h1>
+
+                <p class="visual-description">
+                    Push your limits. Break your barriers.
+                    Become the strongest version of yourself.
+                </p>
+
+                <div class="visual-stats">
+                    <div>
+                        <strong>100%</strong>
+                        <small>DEDICATION</small>
+                    </div>
+                    <div>
+                        <strong>24/7</strong>
+                        <small>FOCUS</small>
+                    </div>
+                    <div>
+                        <strong>01</strong>
+                        <small>GOAL: YOU</small>
+                    </div>
+                </div>
+
+                <div class="orbit-scene">
+                    <div class="orbit orbit-outer"></div>
+                    <div class="orbit orbit-inner"></div>
+
+                    <div class="orbit-core">
+                        <span>FC</span>
+                    </div>
+
+                    <div class="float-tag float-tag-one">
+                        <span>✦</span> STAY STRONG
+                    </div>
+
+                    <div class="float-tag float-tag-two">
+                        <span>↗</span> NEVER STOP
+                    </div>
+
+                    <div class="orbit-dot dot-one"></div>
+                    <div class="orbit-dot dot-two"></div>
+                </div>
+
+            </section>
+
+            <!-- RIGHT SIDE LOGIN CARD -->
+            <section class="login-card-wrap">
+
+                <div class="login-card">
+
+                    <div class="card-top">
+                        <span class="card-label">MEMBER ACCESS</span>
+                        <span class="card-icon">✦</span>
+                    </div>
+
+                    <h2>WELCOME <span>BACK.</span></h2>
+
+                    <p class="card-subtitle">
+                        Login to continue your fitness journey.
+                    </p>
+
+                    <form id="loginForm">
+
+                        <div class="login-input-group">
+                            <label for="loginPhone">MOBILE NUMBER</label>
+
+                            <div class="phone-input-box">
+                                <span class="country-code">+91</span>
+                                <span class="phone-divider"></span>
+
+                                <input
+                                    type="tel"
+                                    id="loginPhone"
+                                    placeholder="Enter mobile number"
+                                    maxlength="10"
+                                    inputmode="numeric"
+                                    autocomplete="tel-national"
+                                    required
+                                >
+                            </div>
+
+                            <small class="input-hint">
+                                Enter your registered 10-digit number.
+                            </small>
+                        </div>
+
+                        <div id="recaptcha-container"></div>
+
+                        <button type="button" id="sendOtpBtn" class="login-submit">
+                            <span>SEND OTP</span>
+                            <span class="button-arrow">↗</span>
+                        </button>
+
+                        <div id="otpSection" hidden>
+
+                            <div class="login-input-group otp-group">
+                                <label for="otpCode">VERIFICATION CODE</label>
+
+                                <input
+                                    type="text"
+                                    id="otpCode"
+                                    class="otp-input"
+                                    placeholder="Enter 6-digit OTP"
+                                    maxlength="6"
+                                    inputmode="numeric"
+                                    autocomplete="one-time-code"
+                                >
+
+                                <small class="input-hint">
+                                    Enter the OTP received on your phone.
+                                </small>
+                            </div>
+
+                            <button type="button" id="verifyOtpBtn" class="login-submit">
+                                <span>VERIFY & LOGIN</span>
+                                <span class="button-arrow">↗</span>
+                            </button>
+
+                        </div>
+
+                        <p id="loginStatus" aria-live="polite"></p>
+
+                    </form>
+
+                    <div class="login-separator">
+                        <span>NEW TO FITNESS CLUB?</span>
+                    </div>
+
+                    <a href="join.html" class="register-link">
+                        CREATE YOUR ACCOUNT <span>↗</span>
+                    </a>
+
+                    <div class="login-card-footer">
+                        <span>SECURE MEMBER LOGIN</span>
+                        <span>● ENCRYPTED ACCESS</span>
+                    </div>
+
+                </div>
+
+                <p class="login-bottom-note">
+                    DISCIPLINE. CONSISTENCY. RESULTS.
+                </p>
+
+            </section>
+
+        </div>
+
+        <footer class="login-footer">
+            © 2026 FITNESS CLUB. ALL RIGHTS RESERVED.
+        </footer>
+
+    </main>
+
+    <script type="module">
+        import { auth, db } from "./firebase.js";
+
+        import {
+            RecaptchaVerifier,
+            signInWithPhoneNumber,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        import {
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+        const phoneInput = document.getElementById("loginPhone");
+        const otpInput = document.getElementById("otpCode");
+        const sendOtpBtn = document.getElementById("sendOtpBtn");
+        const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+        const otpSection = document.getElementById("otpSection");
+        const status = document.getElementById("loginStatus");
+
+        let confirmationResult = null;
+        let recaptchaVerifier = null;
+
+        function showStatus(message, isError = false) {
+            status.textContent = message;
+            status.className = isError ? "login-error" : "login-success";
+        }
+
+        function setButtonLoading(button, loading, normalText) {
+            button.disabled = loading;
+            button.querySelector("span:first-child").textContent =
+                loading ? "PLEASE WAIT..." : normalText;
+        }
+
+        // SEND OTP
+        sendOtpBtn.addEventListener("click", async () => {
+
+            const mobile = phoneInput.value.trim();
+
+            if (!/^[6-9]\d{9}$/.test(mobile)) {
+                showStatus("Please enter a valid 10-digit mobile number.", true);
+                phoneInput.focus();
+                return;
+            }
+
+            setButtonLoading(sendOtpBtn, true, "SEND OTP");
+            showStatus("Preparing secure verification...");
+
+            try {
+                if (!recaptchaVerifier) {
+                    recaptchaVerifier = new RecaptchaVerifier(
+                        auth,
+                        "recaptcha-container",
+                        { size: "normal" }
+                    );
+                }
+
+                confirmationResult = await signInWithPhoneNumber(
+                    auth,
+                    "+91" + mobile,
+                    recaptchaVerifier
+                );
+
+                otpSection.hidden = false;
+                phoneInput.readOnly = true;
+                otpInput.focus();
+
+                showStatus("OTP sent successfully. Check your phone.");
+
+            } catch (error) {
+                console.error("OTP Error:", error);
+
+                showStatus(
+                    error.message || "Unable to send OTP. Please try again.",
+                    true
+                );
+
+                if (recaptchaVerifier) {
+                    try {
+                        await recaptchaVerifier.clear();
+                    } catch (e) {
+                        console.error(e);
+                    }
+
+                    recaptchaVerifier = null;
+                }
+
+            } finally {
+                setButtonLoading(sendOtpBtn, false, "SEND OTP");
+            }
+        });
+
+        // VERIFY OTP
+        verifyOtpBtn.addEventListener("click", async () => {
+
+            const otp = otpInput.value.trim();
+
+            if (!confirmationResult) {
+                showStatus("Please request OTP first.", true);
+                return;
+            }
+
+            if (!/^\d{6}$/.test(otp)) {
+                showStatus("Please enter the correct 6-digit OTP.", true);
+                otpInput.focus();
+                return;
+            }
+
+            setButtonLoading(verifyOtpBtn, true, "VERIFY & LOGIN");
+            showStatus("Verifying your account...");
+
+            try {
+                const result = await confirmationResult.confirm(otp);
+                const user = result.user;
+
+                const memberRef = doc(db, "users", user.uid);
+                const memberSnapshot = await getDoc(memberRef);
+
+                if (!memberSnapshot.exists()) {
+                    await signOut(auth);
+                    showStatus("Registration not found. Please register first.", true);
+                    return;
+                }
+
+                const member = memberSnapshot.data();
+
+                localStorage.setItem("fitnessLoggedIn", "true");
+
+                localStorage.setItem("fitnessMember", JSON.stringify({
+                    name: member.name || user.displayName || "Member",
+                    phone: member.phoneNumber || user.phoneNumber || "",
+                    email: member.email || "",
+                    plan: member.membershipPlan || ""
+                }));
+
+                showStatus("Login successful! Opening dashboard...");
+
+                window.location.replace("dashboard.html");
+
+            } catch (error) {
+                console.error("Login Error:", error);
+
+                showStatus(
+                    error.message || "Invalid OTP or login failed.",
+                    true
+                );
+
+            } finally {
+                setButtonLoading(verifyOtpBtn, false, "VERIFY & LOGIN");
+            }
+        });
+
+    </script>
+
+</body>
+</html>

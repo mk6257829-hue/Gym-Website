@@ -6,53 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Join Fitness Club</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="./style.css">
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;40OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content="width=device-width, initial-scale=1.OTH;
-    <meta name="viewport" content("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device-width, initial-scale=1.OTH;
-    <meta name("width=device_width", "initial_scale")
+    <link rel="stylesheet" href="./style.css">
+</head>
 
 <body class="registration-page">
 
-    <!-- HEADER -->
     <header class="register-header">
-
         <a href="index.html" class="register-logo">
             FITNESS<span>CLUB.</span>
         </a>
@@ -60,131 +25,129 @@
         <a href="index.html" class="back-home">
             ← BACK TO HOME
         </a>
-
     </header>
 
-
-    <!-- REGISTRATION SECTION -->
     <main class="registration-layout">
 
-        <!-- LEFT SIDE IMAGE -->
         <section class="registration-visual">
-
             <div class="image-glow"></div>
 
-            <img src="fitness-3d.png"
-                 alt="3D Fitness Athlete"
-                 class="athlete-image">
+            <img
+                src="fitness-3d.png"
+                alt="3D Fitness Athlete"
+                class="athlete-image"
+            >
 
             <div class="visual-caption">
-
                 <h2>
                     STRONGER THAN<br>
                     <span>YESTERDAY.</span>
                 </h2>
-
                 <p>Stronger. Healthier. Happier.</p>
-
             </div>
-
         </section>
 
-
-        <!-- RIGHT SIDE FORM -->
         <section class="registration-wrapper">
 
             <div class="form-heading">
-
                 <p class="form-tag">BECOME A MEMBER</p>
-
                 <h1>JOIN THE <span>CLUB.</span></h1>
-
                 <p>Start your transformation today.</p>
-
             </div>
 
-
-            <!-- REGISTRATION FORM -->
             <form id="registrationForm">
 
                 <div class="form-group">
-
                     <label for="memberName">Full Name</label>
-
                     <input
                         type="text"
                         id="memberName"
                         name="name"
                         placeholder="Enter your full name"
+                        autocomplete="name"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
                     <label for="memberPhone">Mobile Number</label>
 
-                    <input
-                        type="tel"
-                        id="memberPhone"
-                        name="mobile"
-                        placeholder="10 digit mobile number"
-                        pattern="[0-9]{10}"
-                        maxlength="10"
-                        required
-                    >
-
+                    <div class="phone-input-wrap">
+                        <span class="country-code">+91</span>
+                        <input
+                            type="tel"
+                            id="memberPhone"
+                            name="mobile"
+                            placeholder="10 digit mobile number"
+                            inputmode="numeric"
+                            pattern="[0-9]{10}"
+                            maxlength="10"
+                            autocomplete="tel-national"
+                            required
+                        >
+                    </div>
                 </div>
 
-
                 <div class="form-group">
-
                     <label for="memberEmail">Email Address</label>
-
                     <input
                         type="email"
                         id="memberEmail"
                         name="email"
                         placeholder="Enter your email"
+                        autocomplete="email"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
                     <label for="memberPlan">Select Membership</label>
 
                     <select id="memberPlan" name="plan" required>
-
                         <option value="">Choose your plan</option>
-
                         <option value="Basic">Basic</option>
-
                         <option value="Standard">Standard</option>
-
                         <option value="Premium">Premium</option>
-
                     </select>
-
                 </div>
 
+                <div id="recaptcha-container"></div>
 
-                <button type="submit" class="register-submit">
-
-                    SUBMIT REGISTRATION <span>↗</span>
-
+                <button
+                    type="button"
+                    class="register-submit"
+                    id="sendOtpBtn"
+                >
+                    SEND OTP <span>↗</span>
                 </button>
+
+                <div class="form-group otp-group" id="otpSection" hidden>
+                    <label for="otpCode">Enter OTP</label>
+
+                    <input
+                        type="text"
+                        id="otpCode"
+                        placeholder="Enter 6 digit OTP"
+                        inputmode="numeric"
+                        pattern="[0-9]{6}"
+                        maxlength="6"
+                        autocomplete="one-time-code"
+                    >
+
+                    <button
+                        type="button"
+                        class="register-submit"
+                        id="verifyOtpBtn"
+                    >
+                        VERIFY OTP & REGISTER <span>↗</span>
+                    </button>
+                </div>
+
+                <p id="registrationStatus" class="registration-status" role="status" aria-live="polite"></p>
 
             </form>
 
-
-            <!-- BENEFITS -->
             <div class="form-benefits">
-
                 <div>
                     <span>🏋️</span>
                     <p>Expert<br>Training</p>
@@ -199,66 +162,197 @@
                     <span>🏆</span>
                     <p>Premium<br>Facilities</p>
                 </div>
-
             </div>
 
         </section>
-
     </main>
 
+    <script type="module">
+        import { auth, db } from "./firebase.js";
+        alert("JOIN PAGE JAVASCRIPT WORKING");
 
-    <!-- REGISTRATION JAVASCRIPT -->
-    <script>
+        import {
+            RecaptchaVerifier,
+            signInWithPhoneNumber,
+            signOut,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-        const registrationForm =
-            document.getElementById("registrationForm");
+        import {
+            doc,
+            getDoc,
+            setDoc,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-        registrationForm.addEventListener("submit", function(event) {
+        const registrationForm = document.getElementById("registrationForm");
+        const sendOtpBtn = document.getElementById("sendOtpBtn");
+        const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+        const otpSection = document.getElementById("otpSection");
+        const otpCode = document.getElementById("otpCode");
+        const statusMessage = document.getElementById("registrationStatus");
 
-            event.preventDefault();
+        let recaptchaVerifier = null;
+        let confirmationResult = null;
+
+        auth.languageCode = "en";
+
+        function showStatus(message, isError = false) {
+            statusMessage.textContent = message;
+            statusMessage.style.color = isError ? "#ff7777" : "#c5f946";
+        }
+
+        function getMemberDetails() {
+            return {
+                name: document.getElementById("memberName").value.trim(),
+                mobile: document.getElementById("memberPhone").value.trim(),
+                email: document.getElementById("memberEmail").value.trim(),
+                plan: document.getElementById("memberPlan").value
+            };
+        }
+
+        // SEND OTP
+        sendOtpBtn.addEventListener("click", async () => {
 
             if (!registrationForm.checkValidity()) {
-
                 registrationForm.reportValidity();
-
                 return;
-
             }
 
-            const member = {
+            const member = getMemberDetails();
 
-                name: document.getElementById("memberName").value.trim(),
+            if (!/^[0-9]{10}$/.test(member.mobile)) {
+                showStatus("Please enter a valid 10-digit mobile number.", true);
+                return;
+            }
 
-                mobile: document.getElementById("memberPhone").value.trim(),
+            const fullPhoneNumber = "+91" + member.mobile;
 
-                email: document.getElementById("memberEmail").value.trim(),
+            sendOtpBtn.disabled = true;
+            showStatus("Preparing phone verification...");
 
-                plan: document.getElementById("memberPlan").value
+            try {
+                if (!recaptchaVerifier) {
+                    recaptchaVerifier = new RecaptchaVerifier(
+                        auth,
+                        "recaptcha-container",
+                        {
+                            size: "normal"
+                        }
+                    );
 
-            };
+                    await recaptchaVerifier.render();
+                }
 
+                confirmationResult = await signInWithPhoneNumber(
+                    auth,
+                    fullPhoneNumber,
+                    recaptchaVerifier
+                );
 
-            // SAVE MEMBER DETAILS
-            localStorage.setItem(
-                "fitnessMember",
-                JSON.stringify(member)
-            );
+                otpSection.hidden = false;
+                sendOtpBtn.hidden = true;
 
+                otpCode.required = true;
+                otpCode.focus();
 
-            // SET LOGIN STATUS
-            localStorage.setItem(
-                "fitnessLoggedIn",
-                "true"
-            );
+                showStatus("OTP sent successfully to +91 " + member.mobile);
 
+            } catch (error) {
+                console.error("OTP sending error:", error);
 
-            // SUCCESS MESSAGE
-            alert("Registration Successful! Welcome to Fitness Club.");
+                showStatus(
+                    error.message || "Unable to send OTP. Please try again.",
+                    true
+                );
 
+                if (recaptchaVerifier) {
+                    try {
+                        recaptchaVerifier.clear();
+                    } catch (e) {
+                        console.error(e);
+                    }
+                    recaptchaVerifier = null;
+                }
 
-            // OPEN DASHBOARD
-            window.location.href = "dashboard.html";
+                sendOtpBtn.disabled = false;
+            }
+        });
 
+        // VERIFY OTP AND REGISTER
+        verifyOtpBtn.addEventListener("click", async () => {
+
+            const code = otpCode.value.trim();
+
+            if (!/^[0-9]{6}$/.test(code)) {
+                showStatus("Please enter a valid 6-digit OTP.", true);
+                return;
+            }
+
+            if (!confirmationResult) {
+                showStatus("Please request OTP first.", true);
+                return;
+            }
+
+            verifyOtpBtn.disabled = true;
+            showStatus("Verifying OTP...");
+
+            try {
+                const userCredential = await confirmationResult.confirm(code);
+                const user = userCredential.user;
+
+                const member = getMemberDetails();
+                const memberRef = doc(db, "users", user.uid);
+
+                const existingMember = await getDoc(memberRef);
+
+                if (existingMember.exists()) {
+                    await signOut(auth);
+
+                    showStatus(
+                        "This mobile number is already registered. Please use Login.",
+                        true
+                    );
+
+                    verifyOtpBtn.disabled = false;
+                    return;
+                }
+
+                await updateProfile(user, {
+                    displayName: member.name
+                });
+
+                await setDoc(memberRef, {
+                    name: member.name,
+                    phoneNumber: user.phoneNumber,
+                    email: member.email,
+                    membershipPlan: member.plan,
+                    createdAt: serverTimestamp()
+                });
+
+                // Temporary compatibility for the existing dashboard.
+                // Firebase Authentication remains the actual login system.
+                localStorage.setItem(
+                    "fitnessMember",
+                    JSON.stringify(member)
+                );
+
+                localStorage.setItem("fitnessLoggedIn", "true");
+
+                showStatus("Registration successful! Opening dashboard...");
+
+                window.location.href = "dashboard.html";
+
+            } catch (error) {
+                console.error("Registration error:", error);
+
+                showStatus(
+                    error.message || "OTP verification failed. Please try again.",
+                    true
+                );
+
+                verifyOtpBtn.disabled = false;
+            }
         });
 
     </script>
