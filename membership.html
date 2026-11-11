@@ -172,56 +172,112 @@
         © 2026 FITNESS CLUB. ALL RIGHTS RESERVED.
     </footer>
 
-    <script>
+    
+<script type="module">
+import { auth, db } from "./firebase.js";
 
-        // Check member login
-        const member = JSON.parse(
-            localStorage.getItem("fitnessMember")
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc,
+    updateDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+let currentUser = null;
+
+// Check Firebase login
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+        alert("Please login first!");
+        window.location.href = "login.html";
+        return;
+    }
+
+    currentUser = user;
+
+    try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            alert("Member profile not found. Please register first.");
+            await signOut(auth);
+            window.location.href = "join.html";
+        }
+
+    } catch (error) {
+        console.error("Profile Error:", error);
+        alert("Unable to verify your membership. Please try again.");
+    }
+});
+
+// Select membership plan
+window.selectPlan = async function(plan) {
+
+    if (!currentUser) {
+        alert("Please login first!");
+        return;
+    }
+
+    const plans = {
+        Basic: { price: 999, duration: 1 },
+        Standard: { price: 1499, duration: 1 },
+        Premium: { price: 2499, duration: 1 }
+    };
+
+    const selected = plans[plan];
+
+    if (!selected) return;
+
+    const confirmPlan = confirm(
+        `Select ${plan} Membership for ₹${selected.price} per month?`
+    );
+
+    if (!confirmPlan) return;
+
+    try {
+        const userRef = doc(db, "users", currentUser.uid);
+
+        await updateDoc(userRef, {
+            membershipPlan: plan,
+            planPrice: selected.price,
+            planDurationMonths: selected.duration,
+            membershipStatus: "Pending Payment",
+            planSelectedAt: serverTimestamp()
+        });
+
+        alert(
+            plan + " plan selected successfully! Please complete payment."
         );
 
-        if (
-            localStorage.getItem("fitnessLoggedIn") !== "true" ||
-            !member
-        ) {
-            alert("Please register first!");
-            window.location.href = "index.html";
-        }
+        window.location.href = "dashboard.html";
 
-        // Select membership
-        function selectPlan(plan) {
+    } catch (error) {
+        console.error("Membership Error:", error);
+        alert("Unable to save membership: " + error.message);
+    }
+};
 
-            const currentMember = JSON.parse(
-                localStorage.getItem("fitnessMember")
-            );
+// Logout
+window.logout = async function() {
 
-            if (!currentMember) {
-                alert("Please register first!");
-                window.location.href = "join.html";
-                return;
-            }
+    try {
+        await signOut(auth);
+        window.location.href = "index.html";
 
-            currentMember.plan = plan;
+    } catch (error) {
+        console.error("Logout Error:", error);
+        alert("Logout failed. Please try again.");
+    }
+};
+</script>
 
-            localStorage.setItem(
-                "fitnessMember",
-                JSON.stringify(currentMember)
-            );
-
-            alert(plan + " Membership Selected Successfully!");
-
-            window.location.href = "dashboard.html";
-        }
-
-        // Logou
-        function logout() {
-
-            localStorage.removeItem("fitnessLoggedIn");
-            localStorage.removeItem("fitnessMember");
-
-            window.location.href = "index.html";
-        }
-
-    </script>
 
 </body>
 </html>

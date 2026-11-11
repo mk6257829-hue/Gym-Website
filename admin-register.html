@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Registration | Fitness Club</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="admin-register-page">
+
+    <header class="admin-topbar">
+        <a href="index.html" class="admin-brand">
+            <span>✚</span> FITNESS <b>CLUB</b>
+        </a>
+        <a href="index.html" class="admin-home">⌂ Back to Home</a>
+    </header>
+
+    <main class="admin-register-layout">
+
+        <!-- LEFT SIDE -->
+        <section class="admin-welcome">
+            <div class="admin-welcome-content">
+                <p class="admin-eyebrow">FITNESS CLUB • MANAGEMENT</p>
+
+                <h1>
+                    Welcome
+                    <span>Admin!</span>
+                </h1>
+
+                <p class="admin-welcome-text">
+                    Take Control. Manage Your Fitness Club with Power.
+                </p>
+
+                <div class="admin-features">
+                    <p>♛ &nbsp; Manage Members</p>
+                    <p>▥ &nbsp; View Analytics</p>
+                    <p>⚙ &nbsp; Control Settings</p>
+                    <p>✓ &nbsp; Ensure Security</p>
+                </div>
+
+                <h2 class="admin-slogan">
+                    Stronger Together.<br>
+                    <span>Healthier Forever!</span>
+                </h2>
+            </div>
+
+            <img
+                src="./admin-mascot.png"
+                alt="Fitness Club Admin"
+                class="admin-hero-image"
+            >
+        </section>
+
+        <!-- RIGHT SIDE FORM -->
+        <section class="admin-form-side">
+
+            <div class="admin-register-card">
+
+                <div class="admin-register-icon">♛</div>
+
+                <h2><span>ADMIN</span> REGISTRATION</h2>
+
+                <p class="admin-subtitle">
+                    Create your Fitness Club administrator account.
+                </p>
+
+                <form id="adminForm">
+
+                    <div class="admin-form-group">
+                        <label for="adminName">Admin Name</label>
+                        <input type="text" id="adminName"
+                            placeholder="Enter Admin Name" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminPhone">Mobile Number</label>
+                        <div class="admin-phone-wrap">
+                            <span>+91</span>
+                            <input type="tel" id="adminPhone"
+                                placeholder="10 Digit Mobile Number"
+                                maxlength="10"
+                                inputmode="numeric"
+                                pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminEmail">Email Address</label>
+                        <input type="email" id="adminEmail"
+                            placeholder="Enter Email Address" required>
+                    </div>
+
+                    <div id="recaptcha-container"></div>
+
+                    <button type="button" id="sendAdminOtp"
+                        class="admin-submit-btn">
+                        ✈ &nbsp; SEND OTP →
+                    </button>
+
+                    <div id="otpSection" hidden>
+                        <div class="admin-form-group">
+                            <label for="adminOtp">Enter OTP</label>
+                            <input type="text" id="adminOtp"
+                                placeholder="Enter 6 Digit OTP"
+                                maxlength="6" inputmode="numeric">
+                        </div>
+
+                        <button type="button" id="verifyAdminOtp"
+                            class="admin-submit-btn">
+                            ✓ &nbsp; VERIFY OTP & REGISTER →
+                        </button>
+                    </div>
+
+                    <p id="adminStatus" role="status"
+                        aria-live="polite"></p>
+
+                </form>
+
+                <div class="admin-register-footer">
+                    <a href="index.html">← BACK TO HOME</a>
+                </div>
+
+                <p class="admin-security-note">
+                    🔒 Secure Administrator Registration
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+    
+
+<script type="module">
+    import { auth } from "./firebase.js";
+
+    import {
+        RecaptchaVerifier,
+        signInWithPhoneNumber
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    // Yahan Firestore Rules wala EXACT same Admin UID paste karein
+    const ADMIN_UID = "o23cG0gwOYNYYPTaKRDFhRMntFV2";
+
+    const form = document.getElementById("adminForm");
+    const sendBtn = document.getElementById("sendAdminOtp");
+    const verifyBtn = document.getElementById("verifyAdminOtp");
+    const otpSection = document.getElementById("otpSection");
+    const otpInput = document.getElementById("adminOtp");
+    const status = document.getElementById("adminStatus");
+
+    let verifier = null;
+    let confirmationResult = null;
+
+    function showStatus(message, error = false) {
+        status.textContent = message;
+        status.style.color = error ? "#ff7777" : "#c5f946";
+    }
+
+    sendBtn.addEventListener("click", async () => {
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const phone = document.getElementById("adminPhone").value.trim();
+
+        if (!/^[0-9]{10}$/.test(phone)) {
+            showStatus("Enter a valid 10 digit mobile number.", true);
+            return;
+        }
+
+        sendBtn.disabled = true;
+        showStatus("Preparing phone verification...");
+
+        try {
+            if (!verifier) {
+                verifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+                    size: "normal"
+                });
+
+                await verifier.render();
+            }
+
+            confirmationResult = await signInWithPhoneNumber(
+                auth,
+                "+91" + phone,
+                verifier
+            );
+
+            otpSection.hidden = false;
+            sendBtn.hidden = true;
+            otpInput.required = true;
+
+            showStatus("OTP sent successfully.");
+
+        } catch (error) {
+            console.error(error);
+            showStatus(error.message, true);
+
+            sendBtn.disabled = false;
+
+            if (verifier) {
+                verifier.clear();
+                verifier = null;
+            }
+        }
+    });
+
+    verifyBtn.addEventListener("click", async () => {
+        const code = otpInput.value.trim();
+
+        if (!/^[0-9]{6}$/.test(code)) {
+            showStatus("Enter a valid 6 digit OTP.", true);
+            return;
+        }
+
+        if (!confirmationResult) {
+            showStatus("Please request OTP first.", true);
+            return;
+        }
+
+        verifyBtn.disabled = true;
+        showStatus("Verifying OTP...");
+
+        try {
+            const result = await confirmationResult.confirm(code);
+            const user = result.user;
+
+            if (user.uid !== ADMIN_UID) {
+                showStatus("Access denied. This phone is not authorized as Admin.", true);
+                await auth.signOut();
+                return;
+            }
+
+            showStatus("Admin verification successful! You can now access Admin Login.");
+
+        } catch (error) {
+            console.error("Admin registration error:", error);
+            showStatus(error.message || "OTP verification failed.", true);
+
+        } finally {
+            verifyBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

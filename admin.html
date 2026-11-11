@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Fitness Club</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="admin-page">
+
+<div class="admin-dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+
+        <div class="admin-logo">
+            <div class="logo-icon">G</div>
+            <h2>FITNESS<span> CLUB</span></h2>
+        </div>
+
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav class="admin-nav">
+            <a href="admin.html" class="active">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="#members">
+                <span>♙</span> Members
+            </a>
+
+            <a href="#membership">
+                <span>▣</span> Memberships
+            </a>
+
+            <a href="#payments">
+                <span>₹</span> Payments
+            </a>
+
+            <a href="#trainers">
+                <span>♟</span> Trainers
+            </a>
+
+            <a href="#reports">
+                <span>▤</span> Reports
+            </a>
+        </nav>
+
+        <p class="sidebar-label">PREFERENCES</p>
+
+        <nav class="admin-nav">
+            <a href="#settings">
+                <span>⚙</span> Settings
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-mini-profile">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <h4>Administrator</h4>
+                    <p>Gym Manager</p>
+                </div>
+            </div>
+
+            <button class="admin-logout" id="adminLogout">
+                ↪ Logout
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+        <!-- HEADER -->
+        <header class="admin-header">
+
+            <div>
+                <p class="header-date">FITNESS CLUB / OVERVIEW</p>
+                <h1>Dashboard</h1>
+                <p class="header-subtitle">
+                    Welcome back! Here's what's happening at your gym.
+                </p>
+            </div>
+
+            <div class="header-right">
+                <div class="admin-status">
+                    <span class="online-dot"></span>
+                    Admin Online
+                </div>
+
+                <div class="header-avatar">A</div>
+            </div>
+
+        </header>
+
+
+        <!-- HERO SECTION -->
+        <section class="admin-hero">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    <span class="hero-tag-dot"></span>
+                    GYM MANAGEMENT SYSTEM
+                </span>
+
+                <h2>
+                    BUILD YOUR<br>
+                    <span>FITNESS EMPIRE.</span>
+                </h2>
+
+                <p>
+                    Manage your gym smarter. Track members,
+                    monitor performance and grow your fitness business
+                    from one powerful dashboard.
+                </p>
+
+                <a href="#members" class="hero-button">
+                    Explore Dashboard <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-glow"></div>
+                <img src="admin-mascot.png"
+                     alt="Fitness Club 3D Fitness Trainer">
+            </div>
+
+            <div class="hero-decoration">FITNESS</div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+        <section class="admin-stats">
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon">♙</div>
+                    <span class="stat-label">TOTAL MEMBERS</span>
+                </div>
+                <h2 id="totalMembers">0</h2>
+                <p class="stat-description">Registered gym members</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon">✓</div>
+                    <span class="stat-label">ACTIVE MEMBERS</span>
+                </div>
+                <h2 id="activeMembers">0</h2>
+                <p class="stat-description">Currently active members</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon">⌛</div>
+                    <span class="stat-label">EXPIRED MEMBERS</span>
+                </div>
+                <h2 id="expiredMembers">0</h2>
+                <p class="stat-description">Membership expired</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-top">
+                    <div class="stat-icon">₹</div>
+                    <span class="stat-label">TOTAL REVENUE</span>
+                </div>
+                <h2 id="totalRevenue">₹0</h2>
+                <p class="stat-description">Recorded payments</p>
+            </div>
+
+        </section>
+
+
+        <!-- MEMBERS SECTION -->
+        <section class="admin-section" id="members">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">MEMBER MANAGEMENT</p>
+                    <h2>Recent Members</h2>
+                </div>
+
+                <a href="#members" class="view-all">
+                    View All →
+                </a>
+            </div>
+
+            <div class="table-container">
+
+                <table class="members-table">
+
+                    <thead>
+                        <tr>
+                            <th>MEMBER NAME</th>
+                            <th>PHONE NUMBER</th>
+                            <th>MEMBERSHIP PLAN</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="membersTable">
+                        <tr>
+                            <td colspan="4" class="empty-message">
+                                Member data will appear here after Firebase integration.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTIONS -->
+        <section class="quick-actions">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">MANAGEMENT TOOLS</p>
+                    <h2>Quick Actions</h2>
+                </div>
+            </div>
+
+            <div class="action-grid">
+
+                <a href="#members" class="action-card">
+                    <span class="action-icon">＋</span>
+                    <div>
+                        <h3>Manage Members</h3>
+                        <p>View and manage gym members</p>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+
+                <a href="#membership" class="action-card">
+                    <span class="action-icon">▣</span>
+                    <div>
+                        <h3>Membership Plans</h3>
+                        <p>Manage gym subscription plans</p>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+
+                <a href="#payments" class="action-card">
+                    <span class="action-icon">₹</span>
+                    <div>
+                        <h3>Payment Records</h3>
+                        <p>Check member payment records</p>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <footer class="admin-footer">
+            © 2026 FITNESS CLUB. ALL RIGHTS RESERVED.
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    query,
+    orderBy,
+    limit
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const ADMIN_UID = "o23cG0gwOYNYYPTaKRDFhRMntFV2";
+
+
+// ADMIN LOGIN CHECK
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user || user.uid !== ADMIN_UID) {
+
+        if (user) {
+            await signOut(auth);
+        }
+
+        window.location.replace("admin-login.html");
+        return;
+    }
+
+    loadDashboardMembers();
+
+});
+
+
+// LOAD FIREBASE MEMBERS
+async function loadDashboardMembers() {
+
+    const membersTable = document.getElementById("membersTable");
+
+    try {
+
+        const membersRef = collection(db, "users");
+
+        const membersQuery = query(
+            membersRef,
+            orderBy("createdAt", "desc"),
+            limit(5)
+        );
+
+        const snapshot = await getDocs(membersQuery);
+
+        document.getElementById("totalMembers").textContent =
+            snapshot.size;
+
+        membersTable.innerHTML = "";
+
+        if (snapshot.empty) {
+
+            membersTable.innerHTML = `
+                <tr>
+                    <td colspan="4" class="empty-message">
+                        No members registered yet.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        snapshot.forEach((document) => {
+
+            const member = document.data();
+
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = member.name || "N/A";
+
+            const phoneCell = document.createElement("td");
+            phoneCell.textContent = member.phoneNumber || "N/A";
+
+            const planCell = document.createElement("td");
+            planCell.textContent = member.membershipPlan || "N/A";
+
+            const statusCell = document.createElement("td");
+            statusCell.textContent = "Registered";
+
+            row.append(
+                nameCell,
+                phoneCell,
+                planCell,
+                statusCell
+            );
+
+            membersTable.appendChild(row);
+
+        });
+
+    } catch (error) {
+
+        console.error("Dashboard Firebase Error:", error);
+
+        membersTable.innerHTML = `
+            <tr>
+                <td colspan="4" class="empty-message">
+                    Unable to load members. Check Firebase connection.
+                </td>
+            </tr>
+        `;
+    }
+
+}
+
+
+// ADMIN LOGOUT
+document.getElementById("adminLogout")?.addEventListener("click", async () => {
+
+    try {
+
+        await signOut(auth);
+        window.location.replace("admin-login.html");
+
+    } catch (error) {
+
+        console.error("Logout Error:", error);
+        alert("Logout failed. Please try again.");
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

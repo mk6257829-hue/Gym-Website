@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Management | Fitness Club</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="admin-page members-page">
+
+<div class="admin-dashboard">
+
+    <aside class="admin-sidebar">
+        <div class="admin-logo">FITNESS CLUB</div>
+
+        <div class="admin-profile">
+            <img src="admin-mascot.png" alt="Admin">
+            <h3>Administrator</h3>
+            <p>Super Admin</p>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin.html">🏠 Dashboard</a>
+            <a href="members.html" class="active">👥 Members</a>
+            <a href="membership.html">💳 Membership</a>
+            <a href="admin.html#payments">💰 Payments</a>
+            <a href="trainers.html">🏋️ Trainers</a>
+            <a href="admin.html#reports">📊 Reports</a>
+        </nav>
+
+        <button class="admin-logout" id="adminLogout">↪ Logout</button>
+    </aside>
+
+    <main class="admin-main">
+
+        <header class="admin-header">
+            <div>
+                <h1>Member Management</h1>
+                <p>Manage all registered gym members.</p>
+            </div>
+            <div class="admin-header-tag">
+                <span></span> Admin Panel
+            </div>
+        </header>
+
+        <section class="admin-welcome">
+            <div class="admin-hero-content">
+                <span class="admin-tagline">MEMBER MANAGEMENT SYSTEM</span>
+                <h2>Manage Your <span>Members!</span></h2>
+                <p>View member information, search records and manage registrations.</p>
+            </div>
+            <div class="admin-hero-image">
+                <img src="admin-mascot.png" alt="Gym Members">
+            </div>
+        </section>
+
+        <section class="admin-stats">
+
+            <div class="admin-stat-card">
+                <p>Total Members</p>
+                <h2 id="totalMembers">0</h2>
+            </div>
+
+            <div class="admin-stat-card">
+                <p>Active Members</p>
+                <h2 id="activeMembers">0</h2>
+            </div>
+
+            <div class="admin-stat-card">
+                <p>Expired Members</p>
+                <h2 id="expiredMembers">0</h2>
+            </div>
+
+        </section>
+
+        <section class="admin-section">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>All Members</h2>
+                    <p>Registered members from Firebase</p>
+                </div>
+            </div>
+
+            <div class="member-search">
+                <input
+                    type="text"
+                    id="searchMember"
+                    placeholder="Search by name, phone or email..."
+                >
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Membership</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="membersTable">
+                        <tr>
+                            <td colspan="5">Loading members...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="memberMessage" role="status"></p>
+
+        </section>
+
+    </main>
+</div>
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+    collection,
+    getDocs,
+    deleteDoc,
+    doc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const ADMIN_UID = "o23cG0gwOYNYYPTaKRDFhRMntFV2";
+
+const table = document.getElementById("membersTable");
+const searchInput = document.getElementById("searchMember");
+const message = document.getElementById("memberMessage");
+
+let allMembers = [];
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user || user.uid !== ADMIN_UID) {
+        if (user) await signOut(auth);
+        window.location.replace("admin-login.html");
+        return;
+    }
+
+    loadMembers();
+});
+
+async function loadMembers() {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "users"));
+
+        allMembers = snapshot.docs.map(memberDoc => ({
+            id: memberDoc.id,
+            ...memberDoc.data()
+        }));
+
+        document.getElementById("totalMembers").textContent =
+            allMembers.length;
+
+        renderMembers(allMembers);
+
+    } catch (error) {
+
+        console.error(error);
+        table.innerHTML = `
+            <tr><td colspan="5">Unable to load members. Check Firestore Rules.</td></tr>
+        `;
+    }
+}
+
+function renderMembers(members) {
+
+    table.innerHTML = "";
+
+    if (members.length === 0) {
+        table.innerHTML = `
+            <tr><td colspan="5">No members found.</td></tr>
+        `;
+        return;
+    }
+
+    members.forEach(member => {
+
+        const row = document.createElement("tr");
+
+        const values = [
+            member.name || "N/A",
+            member.phoneNumber || "N/A",
+            member.email || "N/A",
+            member.membershipPlan || "N/A"
+        ];
+
+        values.forEach(value => {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.appendChild(cell);
+        });
+
+        const actionCell = document.createElement("td");
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "member-delete-btn";
+
+        deleteButton.addEventListener("click", () => {
+            deleteMember(member.id);
+        });
+
+        actionCell.appendChild(deleteButton);
+        row.appendChild(actionCell);
+
+        table.appendChild(row);
+    });
+}
+
+searchInput.addEventListener("input", () => {
+
+    const query = searchInput.value.trim().toLowerCase();
+
+    const filtered = allMembers.filter(member => {
+
+        return [
+            member.name,
+            member.phoneNumber,
+            member.email
+        ].some(value => String(value || "").toLowerCase().includes(query));
+
+    });
+
+    renderMembers(filtered);
+});
+
+async function deleteMember(id) {
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this member?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+
+        await deleteDoc(doc(db, "users", id));
+
+        allMembers = allMembers.filter(member => member.id !== id);
+
+        document.getElementById("totalMembers").textContent =
+            allMembers.length;
+
+        renderMembers(allMembers);
+
+        message.textContent = "Member deleted successfully!";
+
+    } catch (error) {
+
+        console.error(error);
+        message.textContent = "Unable to delete member. Check Firestore Rules.";
+    }
+}
+
+document.getElementById("adminLogout").addEventListener("click", async () => {
+
+    try {
+        await signOut(auth);
+        window.location.replace("admin-login.html");
+
+    } catch (error) {
+        console.error(error);
+        alert("Logout failed. Please try again.");
+    }
+});
+
+</script>
+
+</body>
+</html>
