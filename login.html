@@ -310,11 +310,24 @@
             showStatus("Verifying your account...");
 
             try {
-                const result = await confirmationResult.confirm(otp);
+               const loginStart = performance.now();
+
+const result = await confirmationResult.confirm(otp);
+
+console.log(
+    "Firebase OTP verification:",
+    ((performance.now() - loginStart) / 1000).toFixed(2) + " seconds"
+);
+
+const firestoreStart = performance.now();
                 const user = result.user;
 
                 const memberRef = doc(db, "users", user.uid);
                 const memberSnapshot = await getDoc(memberRef);
+                console.log(
+    "Firestore profile fetch:",
+    ((performance.now() - firestoreStart) / 1000).toFixed(2) + " seconds"
+);
 
                 if (!memberSnapshot.exists()) {
                     await signOut(auth);
